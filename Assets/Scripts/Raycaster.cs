@@ -25,7 +25,9 @@ namespace DefaultNamespace
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, _layerMask.value) == false)
                 return;
 
-            if (hit.collider.TryGetComponent(out Cube cube) == false) 
+            Cube cube;
+            
+            if (hit.collider.TryGetComponent(out cube) == false) 
                 return;
                 
             cube.Explode();
