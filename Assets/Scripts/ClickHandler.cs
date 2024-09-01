@@ -2,9 +2,13 @@
 
 namespace DefaultNamespace
 {
-    public class Raycaster : MonoBehaviour
+    
+    public class ClickHandler : MonoBehaviour
     {
         [SerializeField] private LayerMask _layerMask;
+
+        [SerializeField] private Exploder _exploder;
+        [SerializeField] private CubeSpawner _spawner;
 
         private Camera _camera;
 
@@ -19,17 +23,16 @@ namespace DefaultNamespace
                 return;
             
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-                
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, _layerMask.value) == false)
-                return;
-
-            Cube cube;
             
-            if (hit.collider.TryGetComponent(out cube) == false) 
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _layerMask.value) == false)
                 return;
-                
+            
+            if (hit.collider.TryGetComponent(out Cube cube) == false) 
+                return;
+
+            if (Utils.RollChance(cube.ChanceToSplit))
+                _exploder.Explode(_spawner.Create(cube), cube.transform.position);
+            
             cube.Explode();
         }
     }

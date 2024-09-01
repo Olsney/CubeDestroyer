@@ -1,23 +1,19 @@
-using System;
-using System.Collections.Generic;
-using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Renderer))]
+[RequireComponent(typeof(Rigidbody))]
 public class Cube : MonoBehaviour
 {
     private Material _material;
 
-    public event Action<Cube> Clicked;
-
     public int ChanceToSplit { get; private set; }
+    public Rigidbody Rigidbody { get; private set; }
 
     private void Awake()
     {
         ChanceToSplit = 100;
         _material = GetComponent<Renderer>().material;
+        Rigidbody = GetComponent<Rigidbody>();
     }
 
     public void Init(Vector3 scale, Color color, int chanceToSplit)
@@ -29,7 +25,6 @@ public class Cube : MonoBehaviour
 
     public void Explode()
     {
-        Clicked?.Invoke(this);
         Destroy(gameObject);
     }
 }

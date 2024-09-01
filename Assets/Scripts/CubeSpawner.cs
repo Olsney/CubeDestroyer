@@ -1,50 +1,23 @@
-using System;
 using System.Collections.Generic;
-using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 public class CubeSpawner : MonoBehaviour
 {
-    [SerializeField] private Cube _cube;
-    [SerializeField] private float _explosionRadius;
-    [SerializeField] private float _explosionForce;
-
-    private void OnEnable()
+    public List<Cube> Create(Cube explodedCube)
     {
-        _cube.Clicked += Explode;
-    }
-    
-    public void Create(Cube explodedCube)
-    {
-        Vector3 scale = GetScale(explodedCube);
-        Color color = GetColor();
-        int chanceToSplit = GetChanceToSplit(explodedCube);
-
-        Cube cube = Instantiate(explodedCube, explodedCube.transform.position, Quaternion.identity);
-
-        cube.Init(scale, color, chanceToSplit);
-
-        cube.Clicked += Explode;
-    }
-    
-    private void Explode(Cube explodedCube)
-    {
-        if (Utils.RollChance(explodedCube.ChanceToSplit))
-            return;
-
-        for (int i = 0; i < GetAmountCubes(); i++)
-            Create(explodedCube);
-
-        List<Rigidbody> cubes = GetExplodableObjects();
-
-        foreach (Rigidbody cube in cubes)
+        int cubesAmount = GetAmountCubes();
+        List<Cube> cubes = new List<Cube>();
+        
+        for (int i = 0; i < cubesAmount; i++)
         {
-            cube.AddExplosionForce(_explosionForce, explodedCube.transform.position, _explosionRadius);
+            Cube cube = Instantiate(explodedCube, explodedCube.transform.position, Quaternion.identity);
+            
+            cube.Init(GetScale(explodedCube), GetRandomColor(), GetChanceToSplit(explodedCube));
+            
+            cubes.Add(cube);
         }
 
-        explodedCube.Clicked -= Explode;
+        return cubes;
     }
     
     private int GetChanceToSplit(Cube explodedCube)
@@ -54,7 +27,7 @@ public class CubeSpawner : MonoBehaviour
         return explodedCube.ChanceToSplit / divider;
     }
 
-    private Color GetColor() =>
+    private Color GetRandomColor() =>
         Random.ColorHSV();
 
     private Vector3 GetScale(Cube explodedCube)
@@ -62,21 +35,6 @@ public class CubeSpawner : MonoBehaviour
         int divider = 2;
 
         return explodedCube.transform.localScale / divider;
-    }
-
-    private List<Rigidbody> GetExplodableObjects()
-    {
-        Collider[] hits = Physics.OverlapSphere(transform.position, _explosionRadius);
-
-        List<Rigidbody> cubes = new();
-
-        foreach (Collider hit in hits)
-        {
-            if (hit.attachedRigidbody != null)
-                cubes.Add(hit.attachedRigidbody);
-        }
-
-        return cubes;
     }
 
     private int GetAmountCubes()
