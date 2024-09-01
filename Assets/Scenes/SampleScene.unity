@@ -175,7 +175,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &547532653
+--- !u!1 &561311121
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,40 +183,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 547532655}
-  - component: {fileID: 547532654}
+  - component: {fileID: 561311123}
+  - component: {fileID: 561311122}
   m_Layer: 0
-  m_Name: CubeSpawner
+  m_Name: Exploder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &547532654
+--- !u!114 &561311122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547532653}
+  m_GameObject: {fileID: 561311121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21bf4d379a9072e40b3e3637d8873494, type: 3}
+  m_Script: {fileID: 11500000, guid: 15605c3af7984119a94d6d9b56b2f0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cube: {fileID: 734317650}
-  _explosionRadius: 0
-  _explosionForce: 0
---- !u!4 &547532655
+  _explosionRadius: 15
+  _explosionForce: 15
+--- !u!4 &561311123
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547532653}
+  m_GameObject: {fileID: 561311121}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.47289085, y: -2.864832, z: 5.371388}
+  m_LocalPosition: {x: 1.7770233, y: -5.3562994, z: 7.6221905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -369,17 +368,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &734317650 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 659740617314805289, guid: 6f8db9c8bb38d1e4dab749a06883e942, type: 3}
-  m_PrefabInstance: {fileID: 5598377679920675320}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1efe2f74dea7294ab73398ace63b35a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &798534877
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +416,50 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.63, y: 3.7299657, z: 0.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &943120299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 943120301}
+  - component: {fileID: 943120300}
+  m_Layer: 0
+  m_Name: CubeSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &943120300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943120299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21bf4d379a9072e40b3e3637d8873494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &943120301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943120299}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7770233, y: -5.3562994, z: 7.6221905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -541,6 +573,8 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 51
+  _exploder: {fileID: 561311122}
+  _spawner: {fileID: 943120300}
 --- !u!1 &1889483683
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,8 +773,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7297658499454782566, guid: 6f8db9c8bb38d1e4dab749a06883e942, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -757,4 +790,5 @@ SceneRoots:
   - {fileID: 449771380}
   - {fileID: 628637762}
   - {fileID: 1889483686}
-  - {fileID: 547532655}
+  - {fileID: 561311123}
+  - {fileID: 943120301}

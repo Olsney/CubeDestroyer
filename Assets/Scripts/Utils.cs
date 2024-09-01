@@ -9,7 +9,7 @@ namespace DefaultNamespace
             int maxChance = 100;
             int minChance = 0;
 
-            return Random.Range(minChance, maxChance) > chance;
+            return chance > Random.Range(minChance, maxChance);
         }
     }
 }
