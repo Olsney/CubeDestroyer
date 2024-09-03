@@ -31,7 +31,7 @@ namespace DefaultNamespace
                 return;
 
             if (Utils.RollChance(cube.ChanceToSplit))
-                _exploder.Explode(_spawner.Create(cube), cube.transform.position);
+                _exploder.Explode(cube, _spawner.Create(cube), cube.transform.position);
             
             cube.Explode();
         }
