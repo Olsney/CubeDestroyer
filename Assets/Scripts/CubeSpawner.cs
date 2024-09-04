@@ -40,7 +40,7 @@ public class CubeSpawner : MonoBehaviour
     private int GetAmountCubes()
     {
         int min = 2;
-        int max = 7;
+        int max = 6;
 
         return Random.Range(min, max);
     }

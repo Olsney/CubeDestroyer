@@ -4,24 +4,14 @@ using UnityEngine;
 
 public class Exploder : MonoBehaviour
 {
-    private const float FixedForce = 80f;
-    private const float MultiplierForce = 5f;
+    [SerializeField] private float FixedForce = 80f;
+    [SerializeField] private float MultiplierForce = 15f;
     
     private float _explosionRadius;
     private float _explosionForce;
     
-    public void Explode(Cube cubeToExplode, List<Cube> cubes, Vector3 position)
+    public void Explode(List<Cube> cubes, Vector3 position)
     {
-        _explosionForce = FixedForce / cubeToExplode.transform.localScale.magnitude * MultiplierForce;
-        _explosionRadius = FixedForce / cubeToExplode.transform.localScale.magnitude * MultiplierForce;
-
-        List<Rigidbody> nearestCubes = GetExplodableObjects();
-        
-        foreach (Rigidbody nearestCube in nearestCubes)
-        {
-            nearestCube.AddExplosionForce(_explosionForce, position, _explosionRadius);
-        }
-        
         foreach (Cube cube in cubes)
         {
             _explosionForce = FixedForce / cube.transform.localScale.magnitude;
@@ -44,5 +34,18 @@ public class Exploder : MonoBehaviour
         }
 
         return cubes;
+    }
+
+    public void PushByExploderForce(Cube cube)
+    {
+        _explosionForce = FixedForce / cube.transform.localScale.magnitude * MultiplierForce;
+        _explosionRadius = FixedForce / cube.transform.localScale.magnitude * MultiplierForce;
+
+        List<Rigidbody> nearestCubes = GetExplodableObjects();
+        
+        foreach (Rigidbody nearestCube in nearestCubes)
+        {
+            nearestCube.AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
+        }
     }
 }
